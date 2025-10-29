@@ -39,14 +39,17 @@ class TabNavigationDestination extends BaseConsumerWidget {
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 4.0),
-                        child: Icon(icon, color: appTheme.colours.coreBlack),
+                        child: Icon(
+                          icon,
+                          color: appTheme.colours.coreBlackLightWhiteDark,
+                        ),
                       ),
                     ),
                   ),
                   Text(
                     tabLabel,
                     style: appTheme.textStyles.label1.copyWith(
-                      color: appTheme.colours.coreBlack,
+                      color: appTheme.colours.coreBlackLightWhiteDark,
                     ),
                   ),
                 ],

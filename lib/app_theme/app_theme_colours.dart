@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 abstract class AppThemeColours {
   const AppThemeColours();
 
-  Color get coreBlackOrWhite => const Color(0xFF111111);
-  Color get coreWhite => const Color(0xFFFFFFFF);
-  Color get coreBlack => const Color(0xFF111111);
+  Color get coreBlackLightWhiteDark => const Color(0xFF111111);
+  Color get coreWhiteLightBlackDark => const Color.fromARGB(255, 255, 255, 255);
   Color get black70 => const Color(0xB3111111);
 
   Color get coreGreyDarkest => const Color(0xFF343434);
@@ -31,7 +30,7 @@ abstract class AppThemeColours {
   Color get coreForestGreen => const Color(0xFF345136);
 
   /// Cards
-  Color get cardBg => const Color(0xFFF1F1F1);
+  Color get scaffoldBg => const Color.fromARGB(255, 249, 249, 249);
 
   /// Pokemon type colours
   Color get pokemonTypeColorNormal => const Color(0xFFA8A77A);
@@ -60,7 +59,25 @@ class AppDarkColours extends AppThemeColours {
 
   @override
   /// Override black with white
-  Color get coreBlackOrWhite => Colors.white;
+  Color get coreBlackLightWhiteDark => Colors.white;
+
+  @override
+  Color get coreWhiteLightBlackDark => Colors.black;
+
+  @override
+  Color get scaffoldBg => const Color.fromARGB(255, 46, 46, 46);
+
+  @override
+  Color get coreOrange => coreBrickRed;
+
+  @override
+  Color get coreCoralRed => coreRustRed;
+
+  @override
+  Color get corePaleMint => coreForestGreen;
+
+  @override
+  Color get coreSageGreen => coreFreshGreen;
 }
 
 /// App colors if the app is in light mode

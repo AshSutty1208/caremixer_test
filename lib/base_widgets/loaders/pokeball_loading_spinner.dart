@@ -5,16 +5,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
 class PokeballLoadingSpinner extends BaseConsumerWidget {
-  const PokeballLoadingSpinner({super.key, this.text = 'Loading...'});
+  const PokeballLoadingSpinner({
+    super.key,
+    this.text = 'Loading...',
+    this.size = 24,
+  });
 
   final String text;
+  final double size;
 
   @override
   Widget build(BuildContext context, WidgetRef ref, AppTheme appTheme) {
     return Column(
       spacing: 8,
       children: [
-        Lottie.asset('assets/pokeball.json', width: 24, height: 24),
+        Lottie.asset('assets/pokeball.json', width: size, height: size),
         Text(text, style: appTheme.textStyles.label1),
       ],
     );

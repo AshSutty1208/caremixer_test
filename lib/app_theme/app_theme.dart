@@ -18,8 +18,35 @@ abstract class AppTheme {
 class AppThemeDark implements AppTheme {
   @override
   ThemeData get materialTheme => ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    colorScheme: ColorScheme.fromSeed(seedColor: colours.coreBrickRed),
+    scaffoldBackgroundColor: colours.scaffoldBg,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: colours.coreBlackLightWhiteDark,
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: colours.coreOrange,
+      foregroundColor: colours.coreBlackLightWhiteDark,
+      iconTheme: IconThemeData(color: colours.coreBlackLightWhiteDark),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: colours.coreOrange,
+        foregroundColor: colours.coreBlackLightWhiteDark,
+      ),
+    ),
+    iconTheme: IconThemeData(color: colours.coreOrange),
+    inputDecorationTheme: InputDecorationTheme(
+      prefixIconColor: colours.coreOrange,
+      iconColor: colours.coreOrange,
+      suffixIconColor: colours.coreOrange,
+      hintStyle: TextStyle(color: colours.coreBlackLightWhiteDark),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: colours.coreOrange),
+      ),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: colours.scaffoldBg,
+      surfaceTintColor: colours.scaffoldBg,
+    ),
   );
 
   @override
@@ -39,11 +66,8 @@ class AppThemeLight implements AppTheme {
 
   @override
   ThemeData get materialTheme => ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: colours.scaffoldBg,
     colorScheme: ColorScheme.fromSeed(seedColor: colours.coreCoralRed),
-    primaryColor: colours.coreCoralRed,
-    primaryColorLight: colours.coreCoralRed,
-    primaryColorDark: colours.coreCoralRed,
   );
 
   @override

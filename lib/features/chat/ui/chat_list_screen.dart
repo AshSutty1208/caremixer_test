@@ -1,4 +1,5 @@
 import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
+import 'package:caremixer_test/base_widgets/navigation/app_bar.dart';
 import 'package:caremixer_test/features/chat/ui/chat_list_view_model.dart';
 import 'package:caremixer_test/features/chat/ui/widgets/message_item.dart';
 import 'package:caremixer_test/features/chat/ui/widgets/recieving_message.dart';
@@ -28,8 +29,11 @@ class _ChatListScreenState extends BaseConsumerState<ChatListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Chat', style: appTheme.textStyles.label2),
+      appBar: baseAppBar(
+        context,
+        ref,
+        appTheme,
+        Text('Your Chat', style: appTheme.textStyles.label2),
         actions: [
           IconButton(
             onPressed: () {
@@ -52,10 +56,7 @@ class _ChatListScreenState extends BaseConsumerState<ChatListScreen> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: const Icon(
-                                Icons.close,
-                                color: Colors.black,
-                              ),
+                              icon: const Icon(Icons.close),
                             ),
                           ],
                         ),
@@ -101,7 +102,7 @@ class _ChatListScreenState extends BaseConsumerState<ChatListScreen> {
                 ),
               );
             },
-            icon: const Icon(Icons.group, color: Colors.black),
+            icon: const Icon(Icons.group),
           ),
         ],
       ),
@@ -149,12 +150,12 @@ class _ChatListScreenState extends BaseConsumerState<ChatListScreen> {
               child: TextField(
                 controller: _messageController,
                 decoration: InputDecoration(
-                  icon: Icon(Icons.message, color: Colors.black),
+                  icon: Icon(Icons.message),
                   suffixIcon: IconButton(
                     onPressed: () {
                       _handleSendMessage(_messageController.text);
                     },
-                    icon: Icon(Icons.send, color: Colors.black),
+                    icon: Icon(Icons.send),
                   ),
                   hintText: 'Message',
                   border: OutlineInputBorder(

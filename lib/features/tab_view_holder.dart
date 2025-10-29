@@ -38,8 +38,8 @@ class _TabViewHolderState extends BaseConsumerState<TabViewHolder> {
         child: NavigationBar(
           selectedIndex: widget.navigationShell.currentIndex,
           indicatorColor: Colors.transparent,
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
+          backgroundColor: appTheme.colours.coreWhiteLightBlackDark,
+          surfaceTintColor: appTheme.colours.coreBlackLightWhiteDark,
           shadowColor: Colors.transparent,
           overlayColor: WidgetStatePropertyAll(Colors.transparent),
           height: AppThemeDimensions.tabBarHeight,

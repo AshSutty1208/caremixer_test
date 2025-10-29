@@ -62,7 +62,7 @@ extension PokemonTypeExtension on PokemonType {
         return appTheme.colours.pokemonTypeColorFairy;
 
       default:
-        return appTheme.colours.coreBlackOrWhite;
+        return appTheme.colours.coreBlackLightWhiteDark;
     }
   }
 }

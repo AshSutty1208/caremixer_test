@@ -36,7 +36,7 @@ class TimelineListItem extends BaseConsumerWidget {
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Container(
                             width: 2,
-                            color: appTheme.colours.coreBlackOrWhite,
+                            color: appTheme.colours.coreBlackLightWhiteDark,
                           ),
                         ),
                         Container(
@@ -53,7 +53,7 @@ class TimelineListItem extends BaseConsumerWidget {
                                 : appTheme.colours.coreCoralRed,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: appTheme.colours.coreBlackOrWhite,
+                              color: appTheme.colours.coreBlackLightWhiteDark,
                             ),
                           ),
                         ),
@@ -127,7 +127,7 @@ class TimelineListItem extends BaseConsumerWidget {
                               ? Icons.note
                               : Icons.file_copy_sharp,
                           size: 16,
-                          color: appTheme.colours.coreBlackOrWhite,
+                          color: appTheme.colours.coreBlackLightWhiteDark,
                         ),
                         Text(
                           timelineItem.timelineItemType.name.capitalize(),

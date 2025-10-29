@@ -29,42 +29,42 @@ class AppLightTextStyles extends AppThemeTextStyles {
     fontWeight: FontWeight.w400,
     fontSize: 12,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get label2 => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 18,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get body1 => const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 16,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get body2 => const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 18,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get captionBold => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 12,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get label1 => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreBlack);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 }
 
 /// App text style if the app is in dark mode
@@ -76,40 +76,40 @@ class AppDarkTextStyles extends AppThemeTextStyles {
     fontWeight: FontWeight.w400,
     fontSize: 12,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get label2 => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 18,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get body1 => const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 16,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get body2 => const TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 18,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get captionBold => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 12,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 
   @override
   TextStyle get label1 => const TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16,
     height: 1.5,
-  ).copyWith(color: appThemeColours.coreWhite);
+  ).copyWith(color: appThemeColours.coreBlackLightWhiteDark);
 }

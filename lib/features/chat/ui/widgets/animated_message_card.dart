@@ -78,7 +78,10 @@ class _AnimatedMessageCardState extends BaseConsumerState<AnimatedMessageCard>
       child: Row(
         spacing: 8,
         children: [
-          _buildAvatar(chatMessageRecipientAvatarUrl),
+          _buildAvatar(
+            chatMessageRecipientAvatarUrl,
+            appTheme.colours.corePaleMint,
+          ),
           Flexible(child: _buildAnimatedMessageCard(chatMessage)),
         ],
       ),
@@ -96,7 +99,10 @@ class _AnimatedMessageCardState extends BaseConsumerState<AnimatedMessageCard>
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Flexible(child: _buildAnimatedMessageCard(chatMessage)),
-          _buildAvatar(chatMessageSenderAvatarUrl),
+          _buildAvatar(
+            chatMessageSenderAvatarUrl,
+            appTheme.colours.coreCoralRed,
+          ),
         ],
       ),
     );
@@ -113,10 +119,17 @@ class _AnimatedMessageCardState extends BaseConsumerState<AnimatedMessageCard>
     );
   }
 
-  Widget _buildAvatar(String imageUrl) {
+  Widget _buildAvatar(String imageUrl, Color backgroundColor) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
+      child: Material(
+        elevation: 1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(90)),
+        child: CircleAvatar(
+          backgroundImage: NetworkImage(imageUrl),
+          backgroundColor: backgroundColor,
+        ),
+      ),
     );
   }
 }

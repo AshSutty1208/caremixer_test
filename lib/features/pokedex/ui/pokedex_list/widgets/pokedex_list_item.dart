@@ -25,8 +25,8 @@ class PokedexListItem extends BaseConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.network(
-                  width: 60,
-                  height: 60,
+                  width: 96,
+                  height: 96,
                   pokemon.imageUrl,
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
@@ -84,7 +84,7 @@ class PokedexListItem extends BaseConsumerWidget {
                               ? Icons.note
                               : Icons.file_copy_sharp,
                           size: 16,
-                          color: appTheme.colours.coreBlackOrWhite,
+                          color: appTheme.colours.coreBlackLightWhiteDark,
                         ),
                         Text(
                           timelineItem.timelineItemType.name.capitalize(),

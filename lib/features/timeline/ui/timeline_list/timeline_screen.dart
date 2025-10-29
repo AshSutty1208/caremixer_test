@@ -1,4 +1,6 @@
+import 'package:caremixer_test/app_theme/app_theme_state.dart';
 import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
+import 'package:caremixer_test/base_widgets/navigation/app_bar.dart';
 import 'package:caremixer_test/features/timeline/ui/timeline_list/timeline_view_model.dart';
 import 'package:caremixer_test/features/timeline/ui/timeline_list/widgets/timeline_list_item.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +29,13 @@ class TimelineScreenState extends BaseConsumerState<TimelineScreen> {
     final timelineItems = ref.watch(timelineViewModelProvider).timelineItems;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Timeline', style: appTheme.textStyles.label2),
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      appBar: baseAppBar(
+        context,
+        ref,
+        appTheme,
+        Text('Timeline', style: appTheme.textStyles.label2),
       ),
       body: SafeArea(
         child: CustomScrollView(
