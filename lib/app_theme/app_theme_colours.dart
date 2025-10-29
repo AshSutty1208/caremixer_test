@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+
+@immutable
+abstract class AppThemeColours {
+  const AppThemeColours();
+
+  Color get coreBlackOrWhite => const Color(0xFF111111);
+  Color get coreWhite => const Color(0xFFFFFFFF);
+  Color get coreBlack => const Color(0xFF111111);
+  Color get black70 => const Color(0xB3111111);
+
+  Color get coreGreyDarkest => const Color(0xFF343434);
+
+  Color get coreGreyDarker => const Color(0xFF999999);
+
+  Color get coreGreyDark => const Color(0xFFBBBBBB);
+
+  Color get coreGreyMedium => const Color(0xFFDDDDDD);
+
+  Color get coreGreyLight => const Color(0xFFF1F1F1);
+
+  /// Caremixer colours
+  Color get coreOrange => const Color(0xFFF05226);
+  Color get coreCoralRed => const Color(0xFFFDD8CF);
+  Color get coreBrickRed => const Color(0xFFBD3B27);
+  Color get coreRustRed => const Color(0xFF6B1300);
+
+  Color get corePaleMint => const Color(0xFFE2F7E6);
+  Color get coreSageGreen => const Color(0xFFC1E0C7);
+  Color get coreFreshGreen => const Color(0xFF84CC8F);
+  Color get coreForestGreen => const Color(0xFF345136);
+
+  /// Cards
+  Color get cardBg => const Color(0xFFF1F1F1);
+
+  /// Pokemon type colours
+  Color get pokemonTypeColorNormal => const Color(0xFFA8A77A);
+  Color get pokemonTypeColorFire => const Color(0xFFEE8130);
+  Color get pokemonTypeColorWater => const Color(0xFF6390F0);
+  Color get pokemonTypeColorElectric => const Color(0xFFF7D02C);
+  Color get pokemonTypeColorGrass => const Color(0xFF7AC74C);
+  Color get pokemonTypeColorIce => const Color(0xFF96D9D6);
+  Color get pokemonTypeColorFighting => const Color(0xFFC22E28);
+  Color get pokemonTypeColorPoison => const Color(0xFFA33EA1);
+  Color get pokemonTypeColorGround => const Color(0xFFE2BF65);
+  Color get pokemonTypeColorFlying => const Color(0xFFA98FF3);
+  Color get pokemonTypeColorPsychic => const Color(0xFFF95587);
+  Color get pokemonTypeColorBug => const Color(0xFFA6B91A);
+  Color get pokemonTypeColorRock => const Color(0xFFB6A136);
+  Color get pokemonTypeColorGhost => const Color(0xFF735797);
+  Color get pokemonTypeColorDragon => const Color(0xFF6F35FC);
+  Color get pokemonTypeColorDark => const Color(0xFF705746);
+  Color get pokemonTypeColorSteel => const Color(0xFFB7B7CE);
+  Color get pokemonTypeColorFairy => const Color(0xFFD685AD);
+}
+
+/// App colors if the app is in dark mode
+class AppDarkColours extends AppThemeColours {
+  const AppDarkColours();
+
+  @override
+  /// Override black with white
+  Color get coreBlackOrWhite => Colors.white;
+}
+
+/// App colors if the app is in light mode
+class AppLightColours extends AppThemeColours {
+  const AppLightColours();
+}
