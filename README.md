@@ -8,17 +8,16 @@ Lets go through how we install this thing
 
 ### Android
 
-Android is pretty simple, there is an APK buried in the files.
+Android is pretty simple, there is an APK in the drive link here: https://drive.google.com/file/d/1m3ta07-kOZx9LbusFnYJsQ-LM0PAkRZw/view?usp=drive_link
 
-- Drag the APK file over to your Android phone, either download it or drop it into your emulator
-- Once downloaded make sure you enable 'Install from Unknown sources' in the system settings on your phone
-- Download and install.
+- Download it on your Android device and install
 
 ### iOS
 
 iOS is little more trickier when it comes to being able to install the app
 
 - You will need to open this project and install onto an iOS simulator
+- You can use a Flutter enabled Android Studio IDE or VisualStudio based IDE, install the Flutter plugin and you will need to download the flutter SDK. Link to instructions on how to install flutter: https://docs.flutter.dev/install
 
 
 ### A little more info and tid bits you can do
