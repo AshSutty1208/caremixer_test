@@ -27,5 +27,6 @@ class TimelineViewModel extends _$TimelineViewModel {
     } catch (e) {
       logException('TimelineViewModel', e, stackTrace: StackTrace.current);
     }
+    return null;
   }
 }

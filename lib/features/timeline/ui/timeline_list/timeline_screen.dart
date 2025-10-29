@@ -1,4 +1,3 @@
-import 'package:caremixer_test/app_theme/app_theme_state.dart';
 import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
 import 'package:caremixer_test/base_widgets/navigation/app_bar.dart';
 import 'package:caremixer_test/features/timeline/ui/timeline_list/timeline_view_model.dart';

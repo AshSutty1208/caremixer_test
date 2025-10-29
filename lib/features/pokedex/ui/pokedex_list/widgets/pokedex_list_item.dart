@@ -3,7 +3,6 @@ import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
 import 'package:caremixer_test/base_widgets/loaders/pokeball_loading_spinner.dart';
 import 'package:caremixer_test/extensions.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokemon_detail.dart';
-import 'package:caremixer_test/features/timeline/domain/timeline_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,63 +41,6 @@ class PokedexListItem extends BaseConsumerWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildTimelineItemType(TimelineItem timelineItem, AppTheme appTheme) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          child: Card(
-            color: timelineItem.timelineItemType == TimelineItemType.note
-                ? appTheme.colours.corePaleMint
-                : appTheme.colours.coreCoralRed,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                top: 16.0,
-                bottom: 12.0,
-              ),
-              child: Column(
-                spacing: 4,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(timelineItem.title, style: appTheme.textStyles.label1),
-
-                  Text(timelineItem.message, style: appTheme.textStyles.body1),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      spacing: 4,
-                      children: [
-                        Icon(
-                          timelineItem.timelineItemType == TimelineItemType.note
-                              ? Icons.note
-                              : Icons.file_copy_sharp,
-                          size: 16,
-                          color: appTheme.colours.coreBlackLightWhiteDark,
-                        ),
-                        Text(
-                          timelineItem.timelineItemType.name.capitalize(),
-                          style: appTheme.textStyles.caption,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

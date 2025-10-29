@@ -1,7 +1,5 @@
 import 'package:caremixer_test/app_theme/app_theme.dart';
-import 'package:caremixer_test/app_theme/app_theme_dimensions.dart';
 import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
-import 'package:caremixer_test/base_widgets/fade_in.dart';
 import 'package:caremixer_test/extensions.dart';
 import 'package:caremixer_test/features/chat/domain/chat_message.dart';
 import 'package:caremixer_test/features/chat/ui/widgets/message_item.dart';

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:caremixer_test/app_theme/app_theme.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_abilities.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'pokemon_details/pokemon_species.dart';

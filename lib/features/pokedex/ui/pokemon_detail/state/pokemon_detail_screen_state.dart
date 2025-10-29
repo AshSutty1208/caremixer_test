@@ -1,5 +1,4 @@
 import 'package:caremixer_test/base_api/api_status_enum.dart';
-import 'package:caremixer_test/features/pokedex/domain/pokemon_detail.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_species_detail.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 

@@ -1,4 +1,3 @@
-/// Class that represents a Pokemons Specific Detail
 import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_ability_detail.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 part 'pokemon_abilities.mapper.dart';

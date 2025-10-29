@@ -35,6 +35,7 @@ class ChatListViewModel extends _$ChatListViewModel {
     } catch (e) {
       logException('ChatListViewModel', e, stackTrace: StackTrace.current);
     }
+    return null;
   }
 
   void sendMessage(String message) {
