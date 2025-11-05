@@ -20,7 +20,7 @@ class _PokemonCharacteristicsWidgetState
     return PopScope(
       onPopInvokedWithResult: (didPop, result) async {},
       child: Card(
-        margin: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+        margin: const EdgeInsets.only(left: 16, right: 16),
         color: appTheme.colours.coreCoralRed,
         child: Padding(
           padding: const EdgeInsets.all(16),

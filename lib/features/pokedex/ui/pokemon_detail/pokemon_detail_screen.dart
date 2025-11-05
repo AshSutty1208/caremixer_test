@@ -42,7 +42,7 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
             margin: const EdgeInsets.only(right: 4, left: 4),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
-              color: pokemonType.getColor(appTheme),
+              color: pokemonType.color,
               borderRadius: BorderRadius.circular(8),
             ),
             width: 72,
@@ -136,11 +136,13 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
               int index,
             ) {
               return Column(
+                spacing: 8,
                 children: [
-                  PokemonAbilitiesWidget(pokemonDetail: widget.pokemon),
+                  SizedBox(),
                   PokemonCharacteristicsWidget(
                     pokemonSpecies: widget.pokemon.pokemonSpecies,
                   ),
+                  PokemonAbilitiesWidget(pokemonDetail: widget.pokemon),
                 ],
               );
             }, childCount: 1),

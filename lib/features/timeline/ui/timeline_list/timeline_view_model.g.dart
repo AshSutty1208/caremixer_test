@@ -38,7 +38,7 @@ final class TimelineViewModelProvider
   }
 }
 
-String _$timelineViewModelHash() => r'3d6846a7684d0e48527653e66972165ac416e131';
+String _$timelineViewModelHash() => r'f424c083d107b9342ab11fc4261a9a077f83bd6e';
 
 abstract class _$TimelineViewModel extends $Notifier<TimelineState> {
   TimelineState build();

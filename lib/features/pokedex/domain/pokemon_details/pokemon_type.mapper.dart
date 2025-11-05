@@ -25,15 +25,29 @@ class PokemonTypeMapper extends ClassMapperBase<PokemonType> {
   static const Field<PokemonType, String> _f$url = Field('url', _$url);
   static String _$name(PokemonType v) => v.name;
   static const Field<PokemonType, String> _f$name = Field('name', _$name);
+  static Color _$color(PokemonType v) => v.color;
+  static const Field<PokemonType, Color> _f$color = Field('color', _$color);
+  static String _$backgroundImage(PokemonType v) => v.backgroundImage;
+  static const Field<PokemonType, String> _f$backgroundImage = Field(
+    'backgroundImage',
+    _$backgroundImage,
+  );
 
   @override
   final MappableFields<PokemonType> fields = const {
     #url: _f$url,
     #name: _f$name,
+    #color: _f$color,
+    #backgroundImage: _f$backgroundImage,
   };
 
   static PokemonType _instantiate(DecodingData data) {
-    return PokemonType(url: data.dec(_f$url), name: data.dec(_f$name));
+    return PokemonType(
+      url: data.dec(_f$url),
+      name: data.dec(_f$name),
+      color: data.dec(_f$color),
+      backgroundImage: data.dec(_f$backgroundImage),
+    );
   }
 
   @override
@@ -96,7 +110,7 @@ extension PokemonTypeValueCopy<$R, $Out>
 
 abstract class PokemonTypeCopyWith<$R, $In extends PokemonType, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? url, String? name});
+  $R call({String? url, String? name, Color? color, String? backgroundImage});
   PokemonTypeCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -109,16 +123,21 @@ class _PokemonTypeCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PokemonType> $mapper =
       PokemonTypeMapper.ensureInitialized();
   @override
-  $R call({String? url, String? name}) => $apply(
-    FieldCopyWithData({
-      if (url != null) #url: url,
-      if (name != null) #name: name,
-    }),
-  );
+  $R call({String? url, String? name, Color? color, String? backgroundImage}) =>
+      $apply(
+        FieldCopyWithData({
+          if (url != null) #url: url,
+          if (name != null) #name: name,
+          if (color != null) #color: color,
+          if (backgroundImage != null) #backgroundImage: backgroundImage,
+        }),
+      );
   @override
   PokemonType $make(CopyWithData data) => PokemonType(
     url: data.get(#url, or: $value.url),
     name: data.get(#name, or: $value.name),
+    color: data.get(#color, or: $value.color),
+    backgroundImage: data.get(#backgroundImage, or: $value.backgroundImage),
   );
 
   @override

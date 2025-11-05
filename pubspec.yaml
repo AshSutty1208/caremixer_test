@@ -72,6 +72,18 @@ flutter:
     - assets/pokeball.json
     - assets/loading_dots.json
     - assets/no_data.json
+    - assets/pokemon_bg_grassland.png
+    - assets/pokemon_bg_icyfield.png
+    - assets/pokemon_bg_dark_cavern.png
+    - assets/pokemon_bg_desert.png
+    - assets/pokemon_bg_electricfield.png
+    - assets/pokemon_bg_fairytale.png
+    - assets/pokemon_bg_firefield.png
+    - assets/pokemon_bg_forest.png
+    - assets/pokemon_bg_rockyfield.png
+    - assets/pokemon_bg_underwater.png
+    - assets/pokemon_bg_wasteland.png
+    - assets/pokemon_bg_water_surface.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

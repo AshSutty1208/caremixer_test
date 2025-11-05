@@ -38,7 +38,7 @@ final class ChatListViewModelProvider
   }
 }
 
-String _$chatListViewModelHash() => r'6549b941a4746d234c8518aadec92ff72a699085';
+String _$chatListViewModelHash() => r'0c6866b1754342b0d29921ef8b5b188e2b9f5952';
 
 abstract class _$ChatListViewModel extends $Notifier<ChatListScreenState> {
   ChatListScreenState build();

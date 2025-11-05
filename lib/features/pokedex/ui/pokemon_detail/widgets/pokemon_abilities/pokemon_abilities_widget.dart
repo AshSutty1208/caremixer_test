@@ -55,7 +55,7 @@ class _PokemonAbilitiesWidgetState
     return PopScope(
       onPopInvokedWithResult: (didPop, result) async {},
       child: Card(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.only(left: 16, right: 16),
         color: appTheme.colours.coreCoralRed,
         child: Padding(
           padding: const EdgeInsets.all(16),

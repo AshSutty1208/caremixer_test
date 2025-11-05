@@ -1,68 +1,122 @@
-import 'dart:ui';
-
 import 'package:caremixer_test/app_theme/app_theme.dart';
+import 'package:caremixer_test/main.dart';
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:flutter/material.dart';
 
 part 'pokemon_type.mapper.dart';
 
 @MappableClass()
 class PokemonType with PokemonTypeMappable {
-  const PokemonType({required this.url, required this.name});
+  const PokemonType({
+    required this.url,
+    required this.name,
+    required this.color,
+    required this.backgroundImage,
+  });
 
   final String url;
   final String name;
+  final Color color;
+  final String backgroundImage;
 
   factory PokemonType.fromApi(Map<String, dynamic> map) {
     Map<String, dynamic> typeJson = map['type'];
 
     String name = typeJson['name'] as String;
 
-    return PokemonType(url: map['url'] ??= "", name: name);
+    return PokemonType(
+      url: map['url'] ??= "",
+      name: name,
+      color: getColor(name),
+      backgroundImage: getBackgroundImage(name),
+    );
   }
-}
 
-extension PokemonTypeExtension on PokemonType {
-  Color getColor(AppTheme appTheme) {
+  static Color getColor(String name) {
     switch (name.toLowerCase()) {
       case "normal":
-        return appTheme.colours.pokemonTypeColorNormal;
+        return PokemonTypeColours.pokemonTypeColorNormal;
       case "fire":
-        return appTheme.colours.pokemonTypeColorFire;
+        return PokemonTypeColours.pokemonTypeColorFire;
       case "water":
-        return appTheme.colours.pokemonTypeColorWater;
+        return PokemonTypeColours.pokemonTypeColorWater;
       case "electric":
-        return appTheme.colours.pokemonTypeColorElectric;
+        return PokemonTypeColours.pokemonTypeColorElectric;
       case "grass":
-        return appTheme.colours.pokemonTypeColorGrass;
+        return PokemonTypeColours.pokemonTypeColorGrass;
       case "ice":
-        return appTheme.colours.pokemonTypeColorIce;
+        return PokemonTypeColours.pokemonTypeColorIce;
       case "fighting":
-        return appTheme.colours.pokemonTypeColorFighting;
+        return PokemonTypeColours.pokemonTypeColorFighting;
       case "poison":
-        return appTheme.colours.pokemonTypeColorPoison;
+        return PokemonTypeColours.pokemonTypeColorPoison;
       case "ground":
-        return appTheme.colours.pokemonTypeColorGround;
+        return PokemonTypeColours.pokemonTypeColorGround;
       case "flying":
-        return appTheme.colours.pokemonTypeColorFlying;
+        return PokemonTypeColours.pokemonTypeColorFlying;
       case "psychic":
-        return appTheme.colours.pokemonTypeColorPsychic;
+        return PokemonTypeColours.pokemonTypeColorPsychic;
       case "bug":
-        return appTheme.colours.pokemonTypeColorBug;
+        return PokemonTypeColours.pokemonTypeColorBug;
       case "rock":
-        return appTheme.colours.pokemonTypeColorRock;
+        return PokemonTypeColours.pokemonTypeColorRock;
       case "ghost":
-        return appTheme.colours.pokemonTypeColorGhost;
+        return PokemonTypeColours.pokemonTypeColorGhost;
       case "dragon":
-        return appTheme.colours.pokemonTypeColorDragon;
+        return PokemonTypeColours.pokemonTypeColorDragon;
       case "dark":
-        return appTheme.colours.pokemonTypeColorDark;
+        return PokemonTypeColours.pokemonTypeColorDark;
       case "steel":
-        return appTheme.colours.pokemonTypeColorSteel;
+        return PokemonTypeColours.pokemonTypeColorSteel;
       case "fairy":
-        return appTheme.colours.pokemonTypeColorFairy;
+        return PokemonTypeColours.pokemonTypeColorFairy;
 
       default:
-        return appTheme.colours.coreBlackLightWhiteDark;
+        return PokemonTypeColours.pokemonTypeColorNormal;
+    }
+  }
+
+  static String getBackgroundImage(String name) {
+    switch (name.toLowerCase()) {
+      case "normal":
+        return ImageAssets.pokemonBgGrassland;
+      case "fire":
+        return ImageAssets.pokemonBgFireField;
+      case "water":
+        return ImageAssets.pokemonBgWaterSurface;
+      case "electric":
+        return ImageAssets.pokemonBgElectricField;
+      case "grass":
+        return ImageAssets.pokemonBgGrassland;
+      case "ice":
+        return ImageAssets.pokemonBgIcyField;
+      case "fighting":
+        return ImageAssets.pokemonBgGrassland;
+      case "poison":
+        return ImageAssets.pokemonBgWasteland;
+      case "ground":
+        return ImageAssets.pokemonBgRockyField;
+      case "flying":
+        return ImageAssets.pokemonBgForest;
+      case "psychic":
+        return ImageAssets.pokemonBgFairytale;
+      case "bug":
+        return ImageAssets.pokemonBgForest;
+      case "rock":
+        return ImageAssets.pokemonBgRockyField;
+      case "ghost":
+        return ImageAssets.pokemonBgDarkCavern;
+      case "dragon":
+        return ImageAssets.pokemonBgFireField;
+      case "dark":
+        return ImageAssets.pokemonBgDarkCavern;
+      case "steel":
+        return ImageAssets.pokemonBgRockyField;
+      case "fairy":
+        return ImageAssets.pokemonBgFairytale;
+
+      default:
+        return ImageAssets.pokemonBgGrassland;
     }
   }
 }
