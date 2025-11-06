@@ -29,6 +29,7 @@ The tab_view is the main navigation point of the app, you can go between each ta
 - The Pokedex screen and the Avatars on the chat screen are the only things effected by internet being unavailable
 - There is little slide in animations when moving up and down the chat screen
 - Pokemon detail can be seen by pressing on them and little fade-ins happen with the title.
-- You can also scroll fully upwards on the Pokedex detail to give more space and 'Close the Pokeball'
+- Pokemon detail also, if the pokemon has multiple types the top content can page, allowing you to see different enviroments for the pokemon types
+- You can also scroll fully upwards on the Pokedex detail to give more space, collapsing the top content.
 - You can see the participants of the chat using the top right icon, which presents a bottom sheet.
 - The little icon animations you see are Lottie animations

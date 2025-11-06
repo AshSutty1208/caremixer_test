@@ -60,7 +60,7 @@ class _TabViewHolderState extends BaseConsumerState<TabViewHolder> {
       ),
       TabNavigationDestination(
         tabLabel: 'Pokedex',
-        icon: Icons.power,
+        icon: Icons.pets,
         isSelected: widget.navigationShell.currentIndex == 1,
       ),
       TabNavigationDestination(

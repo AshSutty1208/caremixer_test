@@ -18,6 +18,8 @@ class PokemonDetailScreenStateMapper
         _instance = PokemonDetailScreenStateMapper._(),
       );
       PokemonSpeciesDetailMapper.ensureInitialized();
+      PokemonAbilityDetailMapper.ensureInitialized();
+      PokemonCharacteristicDetailMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -44,17 +46,65 @@ class PokemonDetailScreenStateMapper
     _$pokemonSpeciesDetail,
     opt: true,
   );
+  static ApiStatusEnum _$getPokemonAbilityApiStatus(
+    PokemonDetailScreenState v,
+  ) => v.getPokemonAbilityApiStatus;
+  static const Field<PokemonDetailScreenState, ApiStatusEnum>
+  _f$getPokemonAbilityApiStatus = Field(
+    'getPokemonAbilityApiStatus',
+    _$getPokemonAbilityApiStatus,
+    opt: true,
+    def: ApiStatusEnum.notStarted,
+  );
+  static List<PokemonAbilityDetail>? _$pokemonAbilityDetails(
+    PokemonDetailScreenState v,
+  ) => v.pokemonAbilityDetails;
+  static const Field<PokemonDetailScreenState, List<PokemonAbilityDetail>>
+  _f$pokemonAbilityDetails = Field(
+    'pokemonAbilityDetails',
+    _$pokemonAbilityDetails,
+    opt: true,
+  );
+  static ApiStatusEnum _$getPokemonCharacteristicApiStatus(
+    PokemonDetailScreenState v,
+  ) => v.getPokemonCharacteristicApiStatus;
+  static const Field<PokemonDetailScreenState, ApiStatusEnum>
+  _f$getPokemonCharacteristicApiStatus = Field(
+    'getPokemonCharacteristicApiStatus',
+    _$getPokemonCharacteristicApiStatus,
+    opt: true,
+    def: ApiStatusEnum.notStarted,
+  );
+  static PokemonCharacteristicDetail? _$pokemonCharacteristicDetail(
+    PokemonDetailScreenState v,
+  ) => v.pokemonCharacteristicDetail;
+  static const Field<PokemonDetailScreenState, PokemonCharacteristicDetail>
+  _f$pokemonCharacteristicDetail = Field(
+    'pokemonCharacteristicDetail',
+    _$pokemonCharacteristicDetail,
+    opt: true,
+  );
 
   @override
   final MappableFields<PokemonDetailScreenState> fields = const {
     #getPokemonSpeciesApiStatus: _f$getPokemonSpeciesApiStatus,
     #pokemonSpeciesDetail: _f$pokemonSpeciesDetail,
+    #getPokemonAbilityApiStatus: _f$getPokemonAbilityApiStatus,
+    #pokemonAbilityDetails: _f$pokemonAbilityDetails,
+    #getPokemonCharacteristicApiStatus: _f$getPokemonCharacteristicApiStatus,
+    #pokemonCharacteristicDetail: _f$pokemonCharacteristicDetail,
   };
 
   static PokemonDetailScreenState _instantiate(DecodingData data) {
     return PokemonDetailScreenState(
       getPokemonSpeciesApiStatus: data.dec(_f$getPokemonSpeciesApiStatus),
       pokemonSpeciesDetail: data.dec(_f$pokemonSpeciesDetail),
+      getPokemonAbilityApiStatus: data.dec(_f$getPokemonAbilityApiStatus),
+      pokemonAbilityDetails: data.dec(_f$pokemonAbilityDetails),
+      getPokemonCharacteristicApiStatus: data.dec(
+        _f$getPokemonCharacteristicApiStatus,
+      ),
+      pokemonCharacteristicDetail: data.dec(_f$pokemonCharacteristicDetail),
     );
   }
 
@@ -130,9 +180,25 @@ abstract class PokemonDetailScreenStateCopyWith<
     implements ClassCopyWith<$R, $In, $Out> {
   PokemonSpeciesDetailCopyWith<$R, PokemonSpeciesDetail, PokemonSpeciesDetail>?
   get pokemonSpeciesDetail;
+  ListCopyWith<
+    $R,
+    PokemonAbilityDetail,
+    PokemonAbilityDetailCopyWith<$R, PokemonAbilityDetail, PokemonAbilityDetail>
+  >?
+  get pokemonAbilityDetails;
+  PokemonCharacteristicDetailCopyWith<
+    $R,
+    PokemonCharacteristicDetail,
+    PokemonCharacteristicDetail
+  >?
+  get pokemonCharacteristicDetail;
   $R call({
     ApiStatusEnum? getPokemonSpeciesApiStatus,
     PokemonSpeciesDetail? pokemonSpeciesDetail,
+    ApiStatusEnum? getPokemonAbilityApiStatus,
+    List<PokemonAbilityDetail>? pokemonAbilityDetails,
+    ApiStatusEnum? getPokemonCharacteristicApiStatus,
+    PokemonCharacteristicDetail? pokemonCharacteristicDetail,
   });
   PokemonDetailScreenStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
@@ -154,15 +220,50 @@ class _PokemonDetailScreenStateCopyWithImpl<$R, $Out>
     (v) => call(pokemonSpeciesDetail: v),
   );
   @override
+  ListCopyWith<
+    $R,
+    PokemonAbilityDetail,
+    PokemonAbilityDetailCopyWith<$R, PokemonAbilityDetail, PokemonAbilityDetail>
+  >?
+  get pokemonAbilityDetails => $value.pokemonAbilityDetails != null
+      ? ListCopyWith(
+          $value.pokemonAbilityDetails!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(pokemonAbilityDetails: v),
+        )
+      : null;
+  @override
+  PokemonCharacteristicDetailCopyWith<
+    $R,
+    PokemonCharacteristicDetail,
+    PokemonCharacteristicDetail
+  >?
+  get pokemonCharacteristicDetail => $value
+      .pokemonCharacteristicDetail
+      ?.copyWith
+      .$chain((v) => call(pokemonCharacteristicDetail: v));
+  @override
   $R call({
     ApiStatusEnum? getPokemonSpeciesApiStatus,
     Object? pokemonSpeciesDetail = $none,
+    ApiStatusEnum? getPokemonAbilityApiStatus,
+    Object? pokemonAbilityDetails = $none,
+    ApiStatusEnum? getPokemonCharacteristicApiStatus,
+    Object? pokemonCharacteristicDetail = $none,
   }) => $apply(
     FieldCopyWithData({
       if (getPokemonSpeciesApiStatus != null)
         #getPokemonSpeciesApiStatus: getPokemonSpeciesApiStatus,
       if (pokemonSpeciesDetail != $none)
         #pokemonSpeciesDetail: pokemonSpeciesDetail,
+      if (getPokemonAbilityApiStatus != null)
+        #getPokemonAbilityApiStatus: getPokemonAbilityApiStatus,
+      if (pokemonAbilityDetails != $none)
+        #pokemonAbilityDetails: pokemonAbilityDetails,
+      if (getPokemonCharacteristicApiStatus != null)
+        #getPokemonCharacteristicApiStatus: getPokemonCharacteristicApiStatus,
+      if (pokemonCharacteristicDetail != $none)
+        #pokemonCharacteristicDetail: pokemonCharacteristicDetail,
     }),
   );
   @override
@@ -174,6 +275,22 @@ class _PokemonDetailScreenStateCopyWithImpl<$R, $Out>
     pokemonSpeciesDetail: data.get(
       #pokemonSpeciesDetail,
       or: $value.pokemonSpeciesDetail,
+    ),
+    getPokemonAbilityApiStatus: data.get(
+      #getPokemonAbilityApiStatus,
+      or: $value.getPokemonAbilityApiStatus,
+    ),
+    pokemonAbilityDetails: data.get(
+      #pokemonAbilityDetails,
+      or: $value.pokemonAbilityDetails,
+    ),
+    getPokemonCharacteristicApiStatus: data.get(
+      #getPokemonCharacteristicApiStatus,
+      or: $value.getPokemonCharacteristicApiStatus,
+    ),
+    pokemonCharacteristicDetail: data.get(
+      #pokemonCharacteristicDetail,
+      or: $value.pokemonCharacteristicDetail,
     ),
   );
 

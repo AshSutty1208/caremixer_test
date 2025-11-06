@@ -1,4 +1,3 @@
-import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_ability_detail.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 part 'pokemon_abilities.mapper.dart';
 
@@ -7,18 +6,21 @@ class PokemonAbilities with PokemonAbilitiesMappable {
   const PokemonAbilities({
     required this.isHidden,
     required this.slot,
-    required this.pokemonAbilityDetail,
+    required this.abilityName,
+    required this.abilityUrl,
   });
 
   final bool isHidden;
   final int slot;
-  final PokemonAbilityDetail pokemonAbilityDetail;
+  final String abilityName;
+  final String abilityUrl;
 
   factory PokemonAbilities.fromApi(Map<String, dynamic> map) {
     return PokemonAbilities(
       isHidden: map['is_hidden'] ??= false,
       slot: map['slot'] ??= -1,
-      pokemonAbilityDetail: PokemonAbilityDetail.fromApi(map['ability']),
+      abilityName: map['ability']['name'] ??= "",
+      abilityUrl: map['ability']['url'] ??= "",
     );
   }
 }

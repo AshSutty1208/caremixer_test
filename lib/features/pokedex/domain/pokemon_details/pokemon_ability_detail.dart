@@ -4,15 +4,23 @@ part 'pokemon_ability_detail.mapper.dart';
 
 @MappableClass()
 class PokemonAbilityDetail with PokemonAbilityDetailMappable {
-  const PokemonAbilityDetail({required this.url, required this.name});
+  const PokemonAbilityDetail({required this.name, required this.effectEntry});
 
-  final String url;
   final String name;
+  final String effectEntry;
 
   factory PokemonAbilityDetail.fromApi(Map<String, dynamic> map) {
+    final name = map['names'].firstWhere(
+      (name) => name['language']['name'] == "en",
+    );
+
+    final effectEntry = map['effect_entries']
+        .firstWhere((effect) => effect['language']['name'] == "en")['effect']
+        .trim();
+
     return PokemonAbilityDetail(
-      url: map['url'] as String,
-      name: map['name'] as String,
+      name: name['name'] ?? "",
+      effectEntry: effectEntry ?? "",
     );
   }
 }

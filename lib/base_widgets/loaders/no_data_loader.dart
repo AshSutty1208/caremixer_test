@@ -9,6 +9,6 @@ class NoDataLoader extends BaseConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref, AppTheme appTheme) {
-    return Lottie.asset('assets/no_data.json');
+    return Lottie.asset('assets/no_data.json', width: 250, height: 250);
   }
 }

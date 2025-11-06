@@ -1,85 +1,142 @@
+import 'package:caremixer_test/app_theme/app_theme.dart';
+import 'package:caremixer_test/base_api/api_status_enum.dart';
 import 'package:caremixer_test/base_widgets/base_state_widgets.dart';
+import 'package:caremixer_test/base_widgets/loaders/pokeball_loading_spinner.dart';
 import 'package:caremixer_test/extensions.dart';
-import 'package:caremixer_test/features/pokedex/domain/pokemon_detail.dart';
-import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_abilities.dart';
+import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_ability_detail.dart';
+import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_species.dart';
+import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/pokemon_detail_screen_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PokemonAbilitiesWidget extends BaseConsumerStatefulWidget {
-  final PokemonDetail pokemonDetail;
+class PokemonAbilitiesWidget extends BaseConsumerWidget {
+  final PokemonSpecies pokemonSpecies;
 
-  const PokemonAbilitiesWidget({super.key, required this.pokemonDetail});
+  const PokemonAbilitiesWidget(this.pokemonSpecies, {super.key});
 
-  @override
-  BaseConsumerState<PokemonAbilitiesWidget> createState() =>
-      _PokemonAbilitiesWidgetState();
-}
-
-class _PokemonAbilitiesWidgetState
-    extends BaseConsumerState<PokemonAbilitiesWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return _pokemonAbilityDetailsWidget(context);
-  }
-
-  List<Widget> _getPokemonAbilityWidgets(BuildContext context) {
-    List<Widget> widgets = [];
-    for (PokemonAbilities pokemonAbilities
-        in widget.pokemonDetail.pokemonAbilities) {
-      widgets.add(
-        Text(
-          pokemonAbilities.pokemonAbilityDetail.name.capitalize().replaceAll(
-            "-",
-            " ",
-          ),
-          style: appTheme.textStyles.body1,
-        ),
-      );
-    }
-
-    if (widgets.isEmpty) {
-      widgets.add(
-        Padding(
-          padding: EdgeInsets.only(top: 8),
-          child: Text(
-            "No Abilities To Display...",
-            textAlign: TextAlign.left,
-            style: appTheme.textStyles.body1,
-          ),
-        ),
-      );
-    }
-    return widgets;
-  }
-
-  Widget _pokemonAbilityDetailsWidget(BuildContext context) {
-    return PopScope(
-      onPopInvokedWithResult: (didPop, result) async {},
+  Widget getAbilityLineItem(
+    String abilityName,
+    String abilityEffectEntry,
+    AppTheme appTheme,
+  ) {
+    return Flexible(
       child: Card(
-        margin: const EdgeInsets.only(left: 16, right: 16),
-        color: appTheme.colours.coreCoralRed,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: appTheme.colours.coreBlackLightWhiteDark,
+            width: 1,
+          ),
+        ),
+        color: appTheme.colours.coreOrange,
         child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                "Pokemon Abilities",
-                textAlign: TextAlign.center,
-                style: appTheme.textStyles.label2,
-              ),
-              Container(color: appTheme.colours.coreRustRed, height: 1),
-              Column(
-                spacing: 8,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: _getPokemonAbilityWidgets(context),
-              ),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Center(
+            child: Column(
+              spacing: 8,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Text(
+                    abilityName,
+                    textAlign: TextAlign.center,
+                    style: appTheme.textStyles.label1.copyWith(
+                      color: appTheme.colours.coreWhiteLightBlackDark,
+                    ),
+                  ),
+                ),
+                Text(
+                  abilityEffectEntry.capitalize().replaceAll('\n', ' '),
+                  textAlign: TextAlign.center,
+                  style: appTheme.textStyles.captionBold.copyWith(
+                    color: appTheme.colours.coreBlackLightWhiteDark,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget getAbilitiesDetailsWidget(
+    BuildContext context,
+    AppTheme appTheme,
+    List<PokemonAbilityDetail>? pokemonAbilityDetails,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+      child: Column(
+        spacing: 8,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Pokemon Abilities",
+            textAlign: TextAlign.left,
+            style: appTheme.textStyles.label2.copyWith(
+              color: appTheme.colours.coreBlackLightWhiteDark,
+            ),
+          ),
+          Text(
+            "The Abilities of this Pokemon",
+            textAlign: TextAlign.left,
+            style: appTheme.textStyles.body1.copyWith(
+              color: appTheme.colours.coreBlackLightWhiteDark,
+            ),
+          ),
+          ...pokemonAbilityDetails
+                  ?.map(
+                    (pokemonAbilityDetail) => getAbilityLineItem(
+                      pokemonAbilityDetail.name,
+                      pokemonAbilityDetail.effectEntry,
+                      appTheme,
+                    ),
+                  )
+                  .toList() ??
+              [],
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref, AppTheme appTheme) {
+    final pokemonAbilityDetail = ref
+        .watch(pokemonDetailScreenViewModelProvider)
+        .pokemonAbilityDetails;
+
+    final getPokemonAbilityApiStatus = ref
+        .watch(pokemonDetailScreenViewModelProvider)
+        .getPokemonAbilityApiStatus;
+
+    return switch (getPokemonAbilityApiStatus) {
+      ApiStatusEnum.success => getAbilitiesDetailsWidget(
+        context,
+        appTheme,
+        pokemonAbilityDetail,
+      ),
+      ApiStatusEnum.loading => Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Center(
+          child: PokeballLoadingSpinner(text: "Fetching Pokemon Abilities..."),
+        ),
+      ),
+      ApiStatusEnum.failed => Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Center(
+          child: Text(
+            "Failed to fetch Pokemon Abilities.",
+            style: appTheme.textStyles.label1.copyWith(
+              color: appTheme.colours.coreBrickRed,
+            ),
+          ),
+        ),
+      ),
+      _ => const SizedBox.shrink(),
+    };
   }
 }

@@ -9,64 +9,68 @@ import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_s
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PokemonCharacteristicWidget extends BaseConsumerWidget {
+class PokemonSpeciesDetailWidget extends BaseConsumerWidget {
   final PokemonSpecies pokemonSpecies;
 
-  const PokemonCharacteristicWidget(this.pokemonSpecies, {super.key});
+  const PokemonSpeciesDetailWidget(this.pokemonSpecies, {super.key});
 
   Widget getCharacterLineItem(
     String leftText,
     String rightText,
     AppTheme appTheme,
   ) {
-    return Container(
-      constraints: BoxConstraints(maxWidth: double.infinity),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: Text(leftText, style: appTheme.textStyles.label1)),
-          Expanded(
-            child: Text(
-              rightText.capitalize().replaceAll("-", " "),
-              style: appTheme.textStyles.body1,
-              textAlign: TextAlign.right,
+    return Expanded(
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: appTheme.colours.coreBlackLightWhiteDark,
+            width: 1,
+          ),
+        ),
+        color: appTheme.colours.coreOrange,
+        child: Container(
+          constraints: BoxConstraints(minHeight: 100),
+          child: Center(
+            child: Column(
+              spacing: 8,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Text(
+                    leftText,
+                    textAlign: TextAlign.center,
+                    style: appTheme.textStyles.captionBold.copyWith(
+                      color: appTheme.colours.coreWhiteLightBlackDark,
+                    ),
+                  ),
+                ),
+                Text(
+                  rightText.capitalize().replaceAll("-", " "),
+                  textAlign: TextAlign.center,
+                  style: appTheme.textStyles.label2.copyWith(
+                    color: appTheme.colours.coreBlackLightWhiteDark,
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget getCharacteristicsDetailWidget(
+  Widget getSpeciesDetailWidget(
     BuildContext context,
     AppTheme appTheme,
     PokemonSpeciesDetail? pokemonSpeciesDetail,
   ) {
-    return Column(
+    return Row(
       spacing: 8,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Description", style: appTheme.textStyles.label1),
-              Text(
-                pokemonSpeciesDetail?.description.replaceAll("\n", " ") ??
-                    "None",
-                style: appTheme.textStyles.body1,
-              ),
-            ],
-          ),
-        ),
-        getCharacterLineItem(
-          "Habitat",
-          pokemonSpeciesDetail?.habitat ?? "None",
-          appTheme,
-        ),
         getCharacterLineItem(
           "Growth Rate",
           pokemonSpeciesDetail?.growthRate ?? "None",
@@ -97,7 +101,7 @@ class PokemonCharacteristicWidget extends BaseConsumerWidget {
         .getPokemonSpeciesApiStatus;
 
     return switch (getPokemonSpeciesApiStatus) {
-      ApiStatusEnum.success => getCharacteristicsDetailWidget(
+      ApiStatusEnum.success => getSpeciesDetailWidget(
         context,
         appTheme,
         pokemonSpeciesDetail,
@@ -106,7 +110,7 @@ class PokemonCharacteristicWidget extends BaseConsumerWidget {
         padding: const EdgeInsets.only(top: 16),
         child: Center(
           child: PokeballLoadingSpinner(
-            text: "Fetching Pokemon Characteristics...",
+            text: "Fetching Pokemon Species Details...",
           ),
         ),
       ),

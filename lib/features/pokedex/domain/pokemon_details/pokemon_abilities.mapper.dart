@@ -14,7 +14,6 @@ class PokemonAbilitiesMapper extends ClassMapperBase<PokemonAbilities> {
   static PokemonAbilitiesMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PokemonAbilitiesMapper._());
-      PokemonAbilityDetailMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -29,26 +28,31 @@ class PokemonAbilitiesMapper extends ClassMapperBase<PokemonAbilities> {
   );
   static int _$slot(PokemonAbilities v) => v.slot;
   static const Field<PokemonAbilities, int> _f$slot = Field('slot', _$slot);
-  static PokemonAbilityDetail _$pokemonAbilityDetail(PokemonAbilities v) =>
-      v.pokemonAbilityDetail;
-  static const Field<PokemonAbilities, PokemonAbilityDetail>
-  _f$pokemonAbilityDetail = Field(
-    'pokemonAbilityDetail',
-    _$pokemonAbilityDetail,
+  static String _$abilityName(PokemonAbilities v) => v.abilityName;
+  static const Field<PokemonAbilities, String> _f$abilityName = Field(
+    'abilityName',
+    _$abilityName,
+  );
+  static String _$abilityUrl(PokemonAbilities v) => v.abilityUrl;
+  static const Field<PokemonAbilities, String> _f$abilityUrl = Field(
+    'abilityUrl',
+    _$abilityUrl,
   );
 
   @override
   final MappableFields<PokemonAbilities> fields = const {
     #isHidden: _f$isHidden,
     #slot: _f$slot,
-    #pokemonAbilityDetail: _f$pokemonAbilityDetail,
+    #abilityName: _f$abilityName,
+    #abilityUrl: _f$abilityUrl,
   };
 
   static PokemonAbilities _instantiate(DecodingData data) {
     return PokemonAbilities(
       isHidden: data.dec(_f$isHidden),
       slot: data.dec(_f$slot),
-      pokemonAbilityDetail: data.dec(_f$pokemonAbilityDetail),
+      abilityName: data.dec(_f$abilityName),
+      abilityUrl: data.dec(_f$abilityUrl),
     );
   }
 
@@ -114,13 +118,7 @@ extension PokemonAbilitiesValueCopy<$R, $Out>
 
 abstract class PokemonAbilitiesCopyWith<$R, $In extends PokemonAbilities, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  PokemonAbilityDetailCopyWith<$R, PokemonAbilityDetail, PokemonAbilityDetail>
-  get pokemonAbilityDetail;
-  $R call({
-    bool? isHidden,
-    int? slot,
-    PokemonAbilityDetail? pokemonAbilityDetail,
-  });
+  $R call({bool? isHidden, int? slot, String? abilityName, String? abilityUrl});
   PokemonAbilitiesCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   );
@@ -135,31 +133,25 @@ class _PokemonAbilitiesCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PokemonAbilities> $mapper =
       PokemonAbilitiesMapper.ensureInitialized();
   @override
-  PokemonAbilityDetailCopyWith<$R, PokemonAbilityDetail, PokemonAbilityDetail>
-  get pokemonAbilityDetail => $value.pokemonAbilityDetail.copyWith.$chain(
-    (v) => call(pokemonAbilityDetail: v),
-  );
-  @override
   $R call({
     bool? isHidden,
     int? slot,
-    PokemonAbilityDetail? pokemonAbilityDetail,
+    String? abilityName,
+    String? abilityUrl,
   }) => $apply(
     FieldCopyWithData({
       if (isHidden != null) #isHidden: isHidden,
       if (slot != null) #slot: slot,
-      if (pokemonAbilityDetail != null)
-        #pokemonAbilityDetail: pokemonAbilityDetail,
+      if (abilityName != null) #abilityName: abilityName,
+      if (abilityUrl != null) #abilityUrl: abilityUrl,
     }),
   );
   @override
   PokemonAbilities $make(CopyWithData data) => PokemonAbilities(
     isHidden: data.get(#isHidden, or: $value.isHidden),
     slot: data.get(#slot, or: $value.slot),
-    pokemonAbilityDetail: data.get(
-      #pokemonAbilityDetail,
-      or: $value.pokemonAbilityDetail,
-    ),
+    abilityName: data.get(#abilityName, or: $value.abilityName),
+    abilityUrl: data.get(#abilityUrl, or: $value.abilityUrl),
   );
 
   @override

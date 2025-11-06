@@ -6,7 +6,8 @@ import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_t
 import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/pokemon_detail_screen_view_model.dart';
 import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/widgets/pokedex_detail_toolbar_topcontent_widget.dart';
 import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/widgets/pokemon_abilities/pokemon_abilities_widget.dart';
-import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/widgets/pokemon_characteristics/pokemon_characteristics_widget.dart';
+import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/widgets/pokemon_characteristics%20/pokemon_characteristic_widget.dart';
+import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/widgets/pokemon_species_details/pokemon_species_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -39,17 +40,23 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
         FadeIn(
           fadeInDuration: 400,
           child: Container(
-            margin: const EdgeInsets.only(right: 4, left: 4),
+            margin: const EdgeInsets.only(right: 4, left: 4, top: 4),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             decoration: BoxDecoration(
               color: pokemonType.color,
               borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: appTheme.colours.coreWhiteLightBlackDark,
+                width: 0.5,
+              ),
             ),
             width: 72,
             child: Center(
               child: Text(
                 pokemonType.name.capitalize().replaceAll("-", " "),
-                style: appTheme.textStyles.captionBold,
+                style: appTheme.textStyles.captionBold.copyWith(
+                  color: appTheme.colours.coreWhiteLightBlackDark,
+                ),
               ),
             ),
           ),
@@ -67,9 +74,10 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
         slivers: [
           SliverAppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
-            backgroundColor: Colors.white,
-            toolbarHeight: 80,
-            expandedHeight: MediaQuery.of(context).padding.top + 300,
+            backgroundColor: appTheme.colours.coreOrange,
+            toolbarHeight: 40,
+            iconTheme: IconThemeData(color: Colors.white),
+            expandedHeight: MediaQuery.of(context).padding.top + 220,
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
@@ -86,7 +94,7 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
                   color: appTheme.colours.coreOrange,
                   constraints: const BoxConstraints(
                     minWidth: double.infinity,
-                    minHeight: 80,
+                    minHeight: 48,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -99,28 +107,17 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
                           child: Text(
                             widget.pokemon.name.capitalize(),
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: appTheme.textStyles.label2.copyWith(
                               color: Colors.white,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  offset: Offset(0, 0.5),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                      FadeIn(
-                        fadeInDuration: 600,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Container(
-                            width: 100,
-                            height: 1,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: getPokemonTypeWidgets(),
                       ),
                     ],
                   ),
@@ -137,12 +134,16 @@ class _PokemonDetailScreenState extends BaseConsumerState<PokemonDetailScreen> {
             ) {
               return Column(
                 spacing: 8,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(),
-                  PokemonCharacteristicsWidget(
+                  PokemonCharacteristicWidget(),
+                  PokemonSpeciesDetailsWidget(
                     pokemonSpecies: widget.pokemon.pokemonSpecies,
                   ),
-                  PokemonAbilitiesWidget(pokemonDetail: widget.pokemon),
+                  PokemonAbilitiesWidget(widget.pokemon.pokemonSpecies),
+                  // Extra padding to push the bottom of the screen
+                  SizedBox(height: 40),
                 ],
               );
             }, childCount: 1),

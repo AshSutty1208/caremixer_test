@@ -149,6 +149,7 @@ class _ChatListScreenState extends BaseConsumerState<ChatListScreen> {
               ),
               child: TextField(
                 controller: _messageController,
+                style: appTheme.textStyles.body1,
                 decoration: InputDecoration(
                   icon: Icon(Icons.message),
                   suffixIcon: IconButton(

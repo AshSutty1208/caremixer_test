@@ -21,22 +21,28 @@ class PokemonAbilityDetailMapper extends ClassMapperBase<PokemonAbilityDetail> {
   @override
   final String id = 'PokemonAbilityDetail';
 
-  static String _$url(PokemonAbilityDetail v) => v.url;
-  static const Field<PokemonAbilityDetail, String> _f$url = Field('url', _$url);
   static String _$name(PokemonAbilityDetail v) => v.name;
   static const Field<PokemonAbilityDetail, String> _f$name = Field(
     'name',
     _$name,
   );
+  static String _$effectEntry(PokemonAbilityDetail v) => v.effectEntry;
+  static const Field<PokemonAbilityDetail, String> _f$effectEntry = Field(
+    'effectEntry',
+    _$effectEntry,
+  );
 
   @override
   final MappableFields<PokemonAbilityDetail> fields = const {
-    #url: _f$url,
     #name: _f$name,
+    #effectEntry: _f$effectEntry,
   };
 
   static PokemonAbilityDetail _instantiate(DecodingData data) {
-    return PokemonAbilityDetail(url: data.dec(_f$url), name: data.dec(_f$name));
+    return PokemonAbilityDetail(
+      name: data.dec(_f$name),
+      effectEntry: data.dec(_f$effectEntry),
+    );
   }
 
   @override
@@ -109,7 +115,7 @@ abstract class PokemonAbilityDetailCopyWith<
   $Out
 >
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? url, String? name});
+  $R call({String? name, String? effectEntry});
   PokemonAbilityDetailCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   );
@@ -124,16 +130,16 @@ class _PokemonAbilityDetailCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PokemonAbilityDetail> $mapper =
       PokemonAbilityDetailMapper.ensureInitialized();
   @override
-  $R call({String? url, String? name}) => $apply(
+  $R call({String? name, String? effectEntry}) => $apply(
     FieldCopyWithData({
-      if (url != null) #url: url,
       if (name != null) #name: name,
+      if (effectEntry != null) #effectEntry: effectEntry,
     }),
   );
   @override
   PokemonAbilityDetail $make(CopyWithData data) => PokemonAbilityDetail(
-    url: data.get(#url, or: $value.url),
     name: data.get(#name, or: $value.name),
+    effectEntry: data.get(#effectEntry, or: $value.effectEntry),
   );
 
   @override

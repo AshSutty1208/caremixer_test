@@ -54,6 +54,14 @@ class _PokedexListScreenState extends BaseConsumerState<PokedexListScreen> {
         ref,
         appTheme,
         Text('Pokedex', style: appTheme.textStyles.label2),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(NavigationRoutes.pokedexSearch);
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
       ),
       body: SafeArea(
         child: pokemonList.isNotEmpty

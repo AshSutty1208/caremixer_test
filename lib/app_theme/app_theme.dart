@@ -41,7 +41,16 @@ class AppThemeDark implements AppTheme {
       hintStyle: TextStyle(color: colours.coreBlackLightWhiteDark),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: colours.coreOrange),
+        borderRadius: BorderRadius.circular(10),
       ),
+    ),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(color: colours.coreBlackLightWhiteDark),
+      bodyMedium: TextStyle(color: colours.coreBlackLightWhiteDark),
+      bodySmall: TextStyle(color: colours.coreBlackLightWhiteDark),
+      labelLarge: TextStyle(color: colours.coreBlackLightWhiteDark),
+      labelMedium: TextStyle(color: colours.coreBlackLightWhiteDark),
+      labelSmall: TextStyle(color: colours.coreBlackLightWhiteDark),
     ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: colours.scaffoldBg,

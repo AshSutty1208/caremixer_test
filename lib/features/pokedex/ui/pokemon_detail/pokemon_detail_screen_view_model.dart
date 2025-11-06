@@ -4,6 +4,9 @@ import 'package:caremixer_test/base_api/api_status_enum.dart';
 import 'package:caremixer_test/base_api/base_service.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokedex_repository.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokemon_detail.dart';
+import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_abilities.dart';
+import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_ability_detail.dart';
+import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_characteristic_detail.dart';
 import 'package:caremixer_test/features/pokedex/domain/pokemon_details/pokemon_species_detail.dart';
 import 'package:caremixer_test/features/pokedex/ui/pokedex_list/state/pokedex_list_screen_state.dart';
 import 'package:caremixer_test/features/pokedex/ui/pokemon_detail/state/pokemon_detail_screen_state.dart';
@@ -22,6 +25,8 @@ class PokemonDetailScreenViewModel extends _$PokemonDetailScreenViewModel {
 
   void init(PokemonDetail pokemonDetail) {
     _callGetPokemonSpecies(pokemonDetail.pokemonSpecies.url);
+    _callGetPokemonAbilitiesDetail(pokemonDetail.pokemonAbilities);
+    _callGetPokemonCharacteristicDetails(pokemonDetail.id);
   }
 
   Future<ApiResult?> _callGetPokemonSpecies(String speciesUrl) async {
@@ -47,43 +52,62 @@ class PokemonDetailScreenViewModel extends _$PokemonDetailScreenViewModel {
     return null;
   }
 
-  // Future<ApiResult?> _callGetPokemon(int page) async {
-  //   try {
-  //     state = state.copyWith(getPokemonApiStatus: ApiStatusEnum.loading);
-  //     final result = await _pokedexRepository.getPokemon(page);
+  Future<ApiResult?> _callGetPokemonAbilitiesDetail(
+    List<PokemonAbilities> pokemonAbilities,
+  ) async {
+    try {
+      state = state.copyWith(getPokemonAbilityApiStatus: ApiStatusEnum.loading);
+      final result = await _pokedexRepository.getPokemonAbilitiesDetail(
+        pokemonAbilities,
+      );
 
-  //     if (result is Success<List<PokemonDetail>>) {
-  //       logDebug('Pokedex List Screen View Model', 'Result: ${result.data}');
+      if (result is Success<List<PokemonAbilityDetail>>) {
+        state = state.copyWith(
+          getPokemonAbilityApiStatus: ApiStatusEnum.success,
+          pokemonAbilityDetails: result.data,
+        );
+      } else if (result is Failed) {
+        state = state.copyWith(
+          getPokemonAbilityApiStatus: ApiStatusEnum.failed,
+        );
+      }
+    } catch (e, s) {
+      logException('Pokemon Detail Screen View Model', e, stackTrace: s);
+      state = state.copyWith(getPokemonAbilityApiStatus: ApiStatusEnum.failed);
+    }
 
-  //       final newPokemon = [...state.pokemon, ...result.data];
-  //       newPokemon.sort((a, b) => a.order.compareTo(b.order));
+    return null;
+  }
 
-  //       state = state.copyWith(
-  //         currentPage: page,
-  //         pokemon: [...state.pokemon, ...result.data],
-  //         getPokemonApiStatus: ApiStatusEnum.success,
-  //       );
-  //     } else if (result is Failed<List<PokemonDetail>>) {
-  //       state = state.copyWith(getPokemonApiStatus: ApiStatusEnum.failed);
-  //     }
-  //   } catch (e, s) {
-  //     logException('Pokedex List Screen View Model', e, stackTrace: s);
-  //     state = state.copyWith(getPokemonApiStatus: ApiStatusEnum.failed);
-  //   }
+  Future<ApiResult?> _callGetPokemonCharacteristicDetails(int pokemonId) async {
+    try {
+      state = state.copyWith(
+        getPokemonCharacteristicApiStatus: ApiStatusEnum.loading,
+      );
+      final result = await _pokedexRepository.getPokemonCharacteristicDetails(
+        pokemonId,
+      );
 
-  //   return null;
-  // }
+      if (result is Success<PokemonCharacteristicDetail>) {
+        state = state.copyWith(
+          getPokemonCharacteristicApiStatus: ApiStatusEnum.success,
+          pokemonCharacteristicDetail: result.data,
+        );
+      } else if (result is Failed) {
+      } else if (result is Failed) {
+        state = state.copyWith(
+          getPokemonCharacteristicApiStatus: ApiStatusEnum.failed,
+        );
+      }
 
-  // void onRefresh() {
-  //   state = state.copyWith(
-  //     currentPage: 1,
-  //     pokemon: [],
-  //     getPokemonApiStatus: ApiStatusEnum.notStarted,
-  //   );
-  //   _callGetPokemon(1);
-  // }
+      return null;
+    } catch (e, s) {
+      logException('Pokemon Detail Screen View Model', e, stackTrace: s);
+      state = state.copyWith(
+        getPokemonCharacteristicApiStatus: ApiStatusEnum.failed,
+      );
+    }
 
-  // void hitBottomOfList() {
-  //   _callGetPokemon(state.currentPage + 1);
-  // }
+    return null;
+  }
 }

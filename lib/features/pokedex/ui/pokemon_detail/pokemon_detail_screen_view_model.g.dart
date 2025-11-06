@@ -44,7 +44,7 @@ final class PokemonDetailScreenViewModelProvider
 }
 
 String _$pokemonDetailScreenViewModelHash() =>
-    r'02bc851a58d3f22e073b3bc74ab9b91f0f517f10';
+    r'2761f6b28f6ba66cc7eed5e17f6bc99371592af8';
 
 abstract class _$PokemonDetailScreenViewModel
     extends $Notifier<PokemonDetailScreenState> {

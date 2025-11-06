@@ -11,7 +11,7 @@ class TimelineListItem extends BaseConsumerWidget {
 
   final TimelineItem timelineItem;
 
-  static const double _timelineItemTopPadding = 16.0;
+  static const double _timelineItemTopPadding = 32.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref, AppTheme appTheme) {
@@ -33,15 +33,15 @@ class TimelineListItem extends BaseConsumerWidget {
                     child: Stack(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: const EdgeInsets.only(left: 15.0),
                           child: Container(
                             width: 2,
                             color: appTheme.colours.coreBlackLightWhiteDark,
                           ),
                         ),
                         Container(
-                          width: 12,
-                          height: 12,
+                          width: 32,
+                          height: 32,
                           margin: const EdgeInsets.only(
                             top: _timelineItemTopPadding + 6.0,
                           ),
@@ -55,6 +55,20 @@ class TimelineListItem extends BaseConsumerWidget {
                             border: Border.all(
                               color: appTheme.colours.coreBlackLightWhiteDark,
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 9.0,
+                            top: _timelineItemTopPadding + 14.0,
+                          ),
+                          child: Icon(
+                            timelineItem.timelineItemType ==
+                                    TimelineItemType.note
+                                ? Icons.note
+                                : Icons.file_copy_sharp,
+                            size: 16,
+                            color: appTheme.colours.coreBlackLightWhiteDark,
                           ),
                         ),
                       ],
@@ -71,10 +85,24 @@ class TimelineListItem extends BaseConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Text(
-                        timelineItem.timestamp.formatToDayTime(),
-                        style: appTheme.textStyles.label1,
+                      padding: const EdgeInsets.only(
+                        left: 4.0,
+                        right: 16.0,
+                        top: 12.0,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              timelineItem.timelineItemType.name.capitalize(),
+                              style: appTheme.textStyles.caption,
+                            ),
+                          ),
+                          Text(
+                            timelineItem.timestamp.formatToDayTime(),
+                            style: appTheme.textStyles.captionBold,
+                          ),
+                        ],
                       ),
                     ),
                     _buildTimelineItemType(timelineItem, appTheme),
@@ -95,6 +123,7 @@ class TimelineListItem extends BaseConsumerWidget {
       children: [
         Expanded(
           child: Card(
+            margin: EdgeInsets.only(right: 16.0, top: 8.0),
             color: timelineItem.timelineItemType == TimelineItemType.note
                 ? appTheme.colours.corePaleMint
                 : appTheme.colours.coreCoralRed,
@@ -115,27 +144,6 @@ class TimelineListItem extends BaseConsumerWidget {
                   Text(timelineItem.title, style: appTheme.textStyles.label1),
 
                   Text(timelineItem.message, style: appTheme.textStyles.body1),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      spacing: 4,
-                      children: [
-                        Icon(
-                          timelineItem.timelineItemType == TimelineItemType.note
-                              ? Icons.note
-                              : Icons.file_copy_sharp,
-                          size: 16,
-                          color: appTheme.colours.coreBlackLightWhiteDark,
-                        ),
-                        Text(
-                          timelineItem.timelineItemType.name.capitalize(),
-                          style: appTheme.textStyles.caption,
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),

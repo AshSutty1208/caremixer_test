@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class Endpoint {
   static const String pokemon = "/pokemon/";
+  static const String pokemonCharacteristic = "/characteristic/";
 }
 
 mixin class BaseService {

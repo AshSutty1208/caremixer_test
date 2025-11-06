@@ -80,7 +80,7 @@ class AppDarkColours extends AppThemeColours {
   Color get corePaleMint => coreForestGreen;
 
   @override
-  Color get coreSageGreen => coreFreshGreen;
+  Color get coreSageGreen => corePaleMint;
 }
 
 /// App colors if the app is in light mode
