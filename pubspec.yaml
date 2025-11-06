@@ -38,7 +38,6 @@ dependencies:
   riverpod_annotation: *riverpod_version
   go_router: ^16.2.1
   dio: ^5.8.0+1
-  dartx: ^0.4.0
   dart_mappable: ^4.2.2
   intl: ^0.20.2
   lottie: ^3.3.1
